@@ -1,9 +1,30 @@
+import React from 'react';
+import RecipeSearch from './components/RecipeSearch';
+import Page404 from './components/Page404';
+
+
+
 import logo from './logo.svg';
 import './App.css';
+
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route
+} from 'react-router-dom'
 
 function App() {
   return (
     <div className="App">
+      <Router>
+        {/* <TopNav/> */}
+        <RecipeSearch/>
+        <Routes>
+          <Route path = "/404" element={<Page404 />} />
+        </Routes>
+      </Router> 
+      
+      
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
