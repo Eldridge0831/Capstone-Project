@@ -1,5 +1,6 @@
 import React from 'react';
 import RecipeSearch from './components/RecipeSearch';
+import NutritionData from './components/NutritionData';
 import Page404 from './components/Page404';
 
 
@@ -21,6 +22,7 @@ function App() {
         <RecipeSearch/>
         <Routes>
           <Route path = "/404" element={<Page404 />} />
+          <Route path = "/nutrition" element={<NutritionData />} />
         </Routes>
       </Router> 
       
