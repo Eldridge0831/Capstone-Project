@@ -9,16 +9,19 @@ import {
   Route
 } from 'react-router-dom';
 import Navbar from './components/Navbar';
+import RegistrationLogin from './components/registrationLogin';
 
 function App() {
   return (
     <div className="App">
       <Router>
-        {/* <TopNav/> */}
+      <Navbar />{" "}
+       
         <RecipeSearch/>
         <Routes>
           <Route path = "/404" element={<Page404 />} />
           <Route path = "/nutrition" element={<NutritionData />} />
+          <Route path="/login" element={<RegistrationLogin />} />
         </Routes>
       </Router> 
     </div>
