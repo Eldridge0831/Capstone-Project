@@ -35,7 +35,7 @@ class App extends Component {
       <div className="App">
         <p className="App-Intro">{this.state.apiResponse}</p>
         <Router>
-          <Navbar />
+        <Navbar />{" "}
           <Routes>
             <Route path="/home" element={<Home />} />
             <Route path="/search" element={<RecipeSearch />} />
