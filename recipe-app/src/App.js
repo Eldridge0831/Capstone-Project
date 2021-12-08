@@ -9,6 +9,8 @@ import Aboutus from './components/Aboutus';
 import Page404 from './components/Page404';
 import RecipeCard from './components/RecipeCard';
 import ItemCard from './components/ItemCard';
+import Registration from '../src/components/Registration';
+import Auth0ProviderWithHistory from "./Auth/auth0-provider-with-history";
 import './App.css';
 import {
   BrowserRouter as Router,
@@ -35,10 +37,12 @@ class App extends Component {
   render () {
     return (
       <div className="App">
-        {/* <p className="App-Intro">{this.state.apiResponse}</p> */}
+        <p className="App-Intro">{this.state.apiResponse}</p>
+        
         <Router>
-          <Navbar />
-          <SideNav />
+        <Auth0ProviderWithHistory>
+        <Navbar />{" "}
+        <SideNav />
           <Routes>
             <Route path="/home" element={<Home />} />
             <Route path="/search" element={<RecipeSearch />} />
@@ -48,8 +52,11 @@ class App extends Component {
             <Route path="/aboutus" element={<Aboutus />} />
             <Route path="/recipe" element={<RecipeCard />} />
             <Route path="/solo" element={<ItemCard />} />
+            <Route path="/registration" element={<Registration />} />
           </Routes>
+          </Auth0ProviderWithHistory>
         </Router>
+        
       </div>
     );
   }
