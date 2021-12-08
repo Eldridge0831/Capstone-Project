@@ -7,7 +7,8 @@ import Favorite from './components/Favorite';
 import Aboutus from './components/Aboutus';
 import Page404 from './components/Page404';
 import RecipeCard from './components/RecipeCard';
-import RegistrationLogin from './components/registrationLogin';
+import Registration from '../src/components/Registration';
+import Auth0ProviderWithHistory from "./Auth/auth0-provider-with-history";
 import './App.css';
 import {
   BrowserRouter as Router,
@@ -35,7 +36,9 @@ class App extends Component {
     return (
       <div className="App">
         <p className="App-Intro">{this.state.apiResponse}</p>
+        
         <Router>
+        <Auth0ProviderWithHistory>
         <Navbar />{" "}
           <Routes>
             <Route path="/home" element={<Home />} />
@@ -45,9 +48,11 @@ class App extends Component {
             <Route path="/nutrition" element={<NutritionData />} />
             <Route path="/aboutus" element={<Aboutus />} />
             <Route path="/recipe" element={<RecipeCard />} />
-            <Route path="/login" element={<RegistrationLogin />} />
+            <Route path="/registration" element={<Registration />} />
           </Routes>
+          </Auth0ProviderWithHistory>
         </Router>
+        
       </div>
     );
   }
