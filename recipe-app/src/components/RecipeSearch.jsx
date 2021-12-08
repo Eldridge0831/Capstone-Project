@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 import { Button, Form, Container, Row, Col } from 'react-bootstrap';
 import { useNavigate } from "react-router-dom";
@@ -56,6 +56,7 @@ function RecipeSearch(props) {
                     navigate('/404') // redirect for bad request
                 } else {
                     setRecipeData(data['hits'])
+                    console.log(recipeData)
                     setPageData(data['_links'])
                 }
             });
