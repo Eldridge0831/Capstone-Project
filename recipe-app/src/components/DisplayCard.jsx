@@ -1,6 +1,6 @@
 import React from "react";
 import { Card, Container, Row, Col, Button } from "react-bootstrap";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { setRecipeCard } from "../Redux/actions/RecipeCard-action";
 // import { BsInfoSquare } from "react-icons/bs"; // Information Icon
@@ -27,6 +27,7 @@ const DisplayCard = (props) => {
         />
         <Card.Body>
           <Card.Title>{individualRecipe.label}</Card.Title>
+          <Card.Text>{individualRecipe.source}</Card.Text>
           
           <Container>
             <Row>

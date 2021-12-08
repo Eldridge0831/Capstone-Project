@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Navbar from './components/Navbar';
+import SideNav from './components/SideNav'
 import RecipeSearch from './components/RecipeSearch';
 import NutritionData from './components/NutritionData';
 import Home from './components/Home';
@@ -7,6 +8,7 @@ import Favorite from './components/Favorite';
 import Aboutus from './components/Aboutus';
 import Page404 from './components/Page404';
 import RecipeCard from './components/RecipeCard';
+import ItemCard from './components/ItemCard';
 import Registration from '../src/components/Registration';
 import Auth0ProviderWithHistory from "./Auth/auth0-provider-with-history";
 import './App.css';
@@ -17,20 +19,20 @@ import {
 } from 'react-router-dom';
 
 class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { apiResponse: "" };
-  }
+  // constructor(props) {
+  //   super(props);
+  //   this.state = { apiResponse: "" };
+  // }
 
-  callAPI() {
-    fetch("http://localhost:9000/testAPI")
-      .then(res => res.text())
-      .then(res => this.setState({ apiResponse: res }));
-  }
+  // callAPI() {
+  //   fetch("http://localhost:9000/testAPI")
+  //     .then(res => res.text())
+  //     .then(res => this.setState({ apiResponse: res }));
+  // }
 
-  componentWillMount() {
-    this.callAPI();
-  }
+  // componentWillMount() {
+  //   this.callAPI();
+  // }
 
   render () {
     return (
@@ -40,6 +42,7 @@ class App extends Component {
         <Router>
         <Auth0ProviderWithHistory>
         <Navbar />{" "}
+        <SideNav />
           <Routes>
             <Route path="/home" element={<Home />} />
             <Route path="/search" element={<RecipeSearch />} />
@@ -48,6 +51,7 @@ class App extends Component {
             <Route path="/nutrition" element={<NutritionData />} />
             <Route path="/aboutus" element={<Aboutus />} />
             <Route path="/recipe" element={<RecipeCard />} />
+            <Route path="/solo" element={<ItemCard />} />
             <Route path="/registration" element={<Registration />} />
           </Routes>
           </Auth0ProviderWithHistory>
