@@ -5,7 +5,8 @@ module.exports = {
     await queryInterface.bulkInsert('Users', [{
         firstName: 'Annie',
         lastName: 'Easley',
-        email: 'ajeasley@nasa.gov',
+        userName: 'annieeasley',
+        password: '1234',
         createdAt: new Date(),
         updatedAt: new Date()
     }], {});
@@ -18,7 +19,7 @@ module.exports = {
 
 // 'use strict';
 
-// module.exports = {
+// module.exports = { 
 //   up: async (queryInterface, Sequelize) => {
 //     /**
 //      * Add seed commands here.

@@ -2,7 +2,7 @@ import React from "react";
 import { Card, Container, Row, Col, Button } from "react-bootstrap";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { setRecipeCard } from "../Redux/actions/RecipeCard-action";
+import { setRecipeCard } from "../redux/actions/RecipeCard-action";
 // import { BsInfoSquare } from "react-icons/bs"; // Information Icon
 
 
