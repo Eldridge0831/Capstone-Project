@@ -37,7 +37,7 @@ class App extends Component {
   render () {
     return (
       <div className="App">
-        <p className="App-Intro">{this.state.apiResponse}</p>
+        {/* <p className="App-Intro">{this.state.apiResponse}</p> */}
         
         <Router>
         <Auth0ProviderWithHistory>

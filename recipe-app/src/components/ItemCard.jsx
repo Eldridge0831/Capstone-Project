@@ -2,14 +2,15 @@ import React from 'react';
 import { useSelector } from "react-redux";
 import 'bootstrap/dist/css/bootstrap.css';
 import { Container, Button, Card, Col, Row } from 'react-bootstrap';
-import NutritionCard from './NutritionCard';
-import axios from 'axios';
+// import NutritionCard from './NutritionCard';
+// import axios from 'axios';
 
 
 function ItemCard() {
 
     const singleItemData = useSelector((state) => state.singleItemReducer);
-    console.log(singleItemData);
+    const singleItem = singleItemData[0];
+    console.log(singleItemData[0]);
 
 
     // const alternateIngredient = (event) => {
@@ -36,39 +37,25 @@ function ItemCard() {
                                 <Col md='8'>
                                     <Card.Body>
                                         <Card.Title>{item.label}</Card.Title>
-                                        {/* <Card.Text>{item.nutrients}</Card.Text> */}
-                                        {/* <Card.Text>{recipe.strGlass}</Card.Text>
-                                        <Card.Text>{recipe.strInstructions}</Card.Text> */}
+                                        <Card.Text>Calories: {singleItem.nutrients.ENERC_KCAL}<br />Fat: {singleItem.nutrients.FAT}g<br />Protein: {singleItem.nutrients.PROCNT}g<br />Carbs: {singleItem.nutrients.CHOCDF}g<br />Fiber: {singleItem.nutrients.FIBTG}g</Card.Text>
                                     </Card.Body>
-                                    {/* <Container>
-                                        <Row>
-                                            <Col>
-                                                <div>
-                                                    <Button onClick={(event) => alternateIngredient(event)}>
-
-                                                    
-                                                    </Button>
-                                                </div>
-                                            </Col>
-                                        </Row>
-                                    </Container> */}
                                 </Col>
-                            </Row>
-                            {/* <Row>
-                                {alternateOptions && alternateOptions.map((item, index) => {
-                                    return (
-                                        <Col key={index} xs={12} sm={6} md={6} lg={4} xl={3}
-                                            className="mb-6">
-                                            <NutritionCard index={index} item={item.food} />
+                                <Container>
+                                    <Row>
+                                        <Col>
+                                            <div>
+                                                <Button onClick={(event) => (event)}>
+                                                </Button>
+                                            </div>
                                         </Col>
-                                    )
-                                })}
-                            </Row> */}
+                                    </Row>
+                                </Container>
+                            </Row>
                         </>
                     ))
                 }
             </Card>
-        </div>
+        </div >
     )
 }
 

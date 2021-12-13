@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { Button, Row, Col } from 'react-bootstrap';
 import NutritionCard from './NutritionCard';
 import { useNavigate } from "react-router-dom";
-import { setItemCard } from "../redux/actions/ItemCard-action";
+// import { setItemCard } from "../Redux/actions/ItemCard-action";
 
 function NutritionData(props) {
     const [searchValue, setSearchValue] = useState("");
@@ -43,7 +43,7 @@ function NutritionData(props) {
     return (
         <div>
             <div>
-                <h1>Help</h1>
+                <h1>Food Nutrition & Alternatives</h1>
                 <input value={searchValue} onChange={(event) => searchRequest(event)} type="text" placeholder="Your Item" required />
                 <Button type="submit" onClick={(event) => fetchNutrition(event)}>Search</Button>
             </div>
