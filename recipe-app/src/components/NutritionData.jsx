@@ -2,14 +2,14 @@ import React, { useState } from 'react';
 // import axios from 'axios';
 import { Button, Row, Col } from 'react-bootstrap';
 import NutritionCard from './NutritionCard';
-import { useNavigate } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 // import { setItemCard } from "../Redux/actions/ItemCard-action";
 
 function NutritionData(props) {
     const [searchValue, setSearchValue] = useState("");
     // const [nutritionData, setNutritionData] = useState([])
     const [alternateOptions, setAlternateOptions] = useState([]);
-    const navigate = useNavigate ();
+    const history = useHistory ();
 
 
     // API call
@@ -26,7 +26,7 @@ function NutritionData(props) {
                     // console.log(responseData)
                     setAlternateOptions(responseData.hints)
                 } if ( responseData.hints.length === 0) {
-                    navigate('/404')      
+                    history.push('/404')      
                 }
             }
         }

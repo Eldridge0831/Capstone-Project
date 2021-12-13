@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { Button, Form, Container, Row, Col } from 'react-bootstrap';
-import { useNavigate } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import DisplayCard from './DisplayCard';
 
@@ -19,7 +19,7 @@ function RecipeSearch(props) {
     const [inputDishType, setInputDishType] = useState("")
     const [pageData, setPageData] = useState([])  // For Pagination
     const [previousData, setPreviousData] = useState([]) // For Back Pagination
-    const navigate = useNavigate();
+    const history = useHistory();
     let exclusions = ""
     let time = ""
 
@@ -48,7 +48,7 @@ function RecipeSearch(props) {
                 if (data['hits'].length === 0) {
                     console.log(data['hits'])
                     setRecipeData([])
-                    navigate('/404') // redirect for bad request
+                    history.push('/404') // redirect for bad request
                 } else {
                     setRecipeData(data['hits'])
                     console.log(recipeData)
