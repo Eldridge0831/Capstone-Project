@@ -14,9 +14,7 @@ function Navbar() {
             <Link to="/favorite" style={{ textDecoration: "none" }} className="nav-link">Favorites</Link>
             <Link to="/aboutus" style={{ textDecoration: "none" }} className="nav-link">About Us</Link>
             
-            <Link to="/login" style={{ textDecoration: "none" }} className="nav-link">
-                Login
-              </Link>
+            
               <AuthButton />
               {/* <Link to="/login" style={{ textDecoration: "none" }} className="nav-link">
                 Login
