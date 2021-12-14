@@ -12,6 +12,7 @@ const GoogleStrategy = require("passport-google-oauth20").Strategy;
 const {sequelize, Model, dataTypes} = require('sequelize');
 const users = require("./backend/models").users;
 const favorites = require("./capstone-project/backend/models").favorites;
+const { default: Favorite } = require("../src/components/Favorite");
 
 const pgp = require("pg-promise")();
 const db = pgp("postgres://@127.0.0.1:5432/capstone_development");
@@ -148,9 +149,11 @@ app.delete("/users/delete/:user_name", async (req, res) => {
         res.redirect("/");  //redirect to home page
     });
 
-    // favorites
-app.get("/components/favorite", (req, res) => {
-  console.log(favoriterecipes);
+    // see favorites in DB
+app.get("/components/favorite", async (req, res) => {
+  const favorite = await favorites.findall();
+  console.log('favorties in DB: ', favorite);
+  res.status(200).send(JSON.stringify(user));
 })
 
     app.listen(PORT);
