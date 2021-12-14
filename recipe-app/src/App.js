@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Navbar from './components/Navbar';
-import SideNav from './components/SideNav'
+import Sidebar from './components/SideNavnew'
 import RecipeSearch from './components/RecipeSearch';
 import NutritionData from './components/NutritionData';
 import Home from './components/Home';
@@ -12,6 +12,7 @@ import ItemCard from './components/ItemCard';
 import Registration from '../src/components/Registration';
 import Auth0ProviderWithHistory from "./Auth/auth0-provider-with-history";
 import './App.css';
+
 import {
   BrowserRouter as Router,
   Switch,
@@ -42,7 +43,7 @@ class App extends Component {
         <Router>
         <Auth0ProviderWithHistory>
         <Navbar />{" "}
-        <SideNav />
+        <Sidebar />
           <Switch>
             <Route path="/home">
               <Home/>
