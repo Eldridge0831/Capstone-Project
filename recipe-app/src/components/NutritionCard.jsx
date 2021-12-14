@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { setItemCard } from "../redux/actions/ItemCard-action";
 import NoPicture from "../assets/no-picture-available-icon.jpg";
-// import { setNutritionCard } from "../redux/actions/NutritionCard-action";
+import { setNutritionCard } from "../Redux/actions/NutritionCard-action";
 // import { BsInfoSquare } from "react-icons/bs"; // Information Icon
 
 

@@ -4,7 +4,7 @@ import { Button, Row, Col } from 'react-bootstrap';
 import NutritionCard from './NutritionCard';
 import { useNavigate } from "react-router-dom";
 // import { setItemCard } from "../redux/actions/ItemCard-action";
-// import { setItemCard } from "../Redux/actions/ItemCard-action";
+import { setItemCard } from "../Redux/actions/ItemCard-action";
 
 
 function NutritionData(props) {
