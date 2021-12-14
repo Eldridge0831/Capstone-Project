@@ -14,7 +14,7 @@ import Auth0ProviderWithHistory from "./Auth/auth0-provider-with-history";
 import './App.css';
 import {
   BrowserRouter as Router,
-  Routes,
+  Switch,
   Route
 } from 'react-router-dom';
 
@@ -37,23 +37,41 @@ class App extends Component {
   render () {
     return (
       <div className="App">
-        <p className="App-Intro">{this.state.apiResponse}</p>
+        {/* <p className="App-Intro">{this.state.apiResponse}</p> */}
         
         <Router>
         <Auth0ProviderWithHistory>
         <Navbar />{" "}
         <SideNav />
-          <Routes>
-            <Route path="/home" element={<Home />} />
-            <Route path="/search" element={<RecipeSearch />} />
-            <Route path="/favorite" element={<Favorite />} />
-            <Route path="/404" element={<Page404 />} />
-            <Route path="/nutrition" element={<NutritionData />} />
-            <Route path="/aboutus" element={<Aboutus />} />
-            <Route path="/recipe" element={<RecipeCard />} />
-            <Route path="/solo" element={<ItemCard />} />
-            <Route path="/registration" element={<Registration />} />
-          </Routes>
+          <Switch>
+            <Route path="/home">
+              <Home/>
+            </Route>
+            <Route path="/search">
+              <RecipeSearch/>
+            </Route>
+            <Route path="/favorite">
+              <Favorite/>
+            </Route>
+            <Route path="/404">
+              <Page404/>
+            </Route>
+            <Route path="/nutrition">
+              <NutritionData/>
+            </Route>
+            <Route path="/aboutus">
+              <Aboutus/>
+            </Route>
+            <Route path="/recipe">
+              <RecipeCard/>
+            </Route>
+            <Route path="/solo">
+              <ItemCard/>
+            </Route>
+            <Route path="/registration">
+              <Registration/>
+            </Route>
+          </Switch>
           </Auth0ProviderWithHistory>
         </Router>
         

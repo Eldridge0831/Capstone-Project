@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { Button, Form, Container, Row, Col } from 'react-bootstrap';
-import { useNavigate } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import DisplayCard from './DisplayCard';
 
@@ -16,11 +16,12 @@ function RecipeSearch(props) {
     const [inputCuisine, setInputCuisine] = useState("")
     const [inputDiet, setInputDiet] = useState("")
     const [inputMealType, setInputMealType] = useState("")
+    const [inputDishType, setInputDishType] = useState("")
     const [pageData, setPageData] = useState([])  // For Pagination
-    const navigate = useNavigate();
+    const [previousData, setPreviousData] = useState([]) // For Back Pagination
+    const history = useHistory();
     let exclusions = ""
     let time = ""
-
 
     // API call
     function fetchRecipeList(event) {
@@ -37,40 +38,30 @@ function RecipeSearch(props) {
             console.log(time)
         };
 
-        const url = (`https://api.edamam.com/api/recipes/v2?type=public&q=${inputValue}&app_id=4cb19fd5&app_key=d2763a8995b7eef7f64d6158309567ca&${inputDiet}&${inputHealth}&${exclusions}&${time}&${inputCuisine}&${inputMealType}`)
+        const url = (`https://api.edamam.com/api/recipes/v2?type=public&q=${inputValue}&app_id=4cb19fd5&app_key=d2763a8995b7eef7f64d6158309567ca&${inputDiet}&${inputHealth}&${exclusions}&${time}&${inputCuisine}&${inputMealType}&${inputDishType}`)
         console.log(url)
         return axios.get(url)
             .then(recipes => recipes.data)
             .then(data => {
                 console.log(data);
-                // setInputValue("")
-                // setInputHealth("")
-                // setInputExclude("")
-                // setInputTime("")
-                // setInputCuisine("")
-                // setInputDiet("")
 
                 if (data['hits'].length === 0) {
                     console.log(data['hits'])
                     setRecipeData([])
-                    navigate('/404') // redirect for bad request
+                    history.push('/404') // redirect for bad request
                 } else {
                     setRecipeData(data['hits'])
                     console.log(recipeData)
                     setPageData(data['_links'])
+                    setPreviousData(url)
                 }
             });
     }
-
 
     // Section to handle search input request, changing assigned local states
     const handleRequest = (event) => {
         console.log("request made")
         setInputValue(event.target.value)
-    }
-
-    const handleRequest2 = (event) => {
-        setInputHealth("health=" + event.target.value)
     }
 
     const handleRequest3 = (event) => {
@@ -83,44 +74,43 @@ function RecipeSearch(props) {
         console.log(inputTime)
     }
 
-    const handleRequest5 = (event) => {
-        setInputCuisine("cuisineType=" + event.target.value)
-        console.log(inputCuisine)
-    }
-
-    // const handleRequest6 = (event) => {
-    //     setInputDiet("diet=" + event.target.value)
-    //     console.log(inputDiet)
-    // }
-
-    const handleRequest7 = (event) => {
-        setInputMealType("mealType=" + event.target.value)
-    }
-
     // function for pagination
     const nextPage = () => {
+        setPreviousData(recipeData)
         const pageUrl = (pageData.next.href)
         console.log(pageUrl)
         return axios.get(pageUrl)
             .then(pages => pages.data)
             .then(data => {
+                console.log(data['_links'])
                 setRecipeData(data['hits'])
                 setPageData(data['_links'])
             })
     }
 
+    const previousPage = () => {
+        setRecipeData(previousData)
+    }
+
+
     return (
         <div>
-            <Container fluid id="searchContainer">
+            <Container id="searchContainer">
                 <h2>Healthy Recipe Finder</h2>
                 <Form onSubmit={fetchRecipeList} className="mb-3">
                     <Row className="mb-3">
-                        <Form.Group as={Row}>
-                            <Form.Label column sm={2}>Primary Search</Form.Label>
-                            <Col sm={10}>
+                        <Col md>
+                            <Form.Label>Primary Search</Form.Label>
                             <Form.Control value={inputValue} onChange={handleRequest} type="text" placeholder="What are you looking for?" required />
-                            </Col>
-                        </Form.Group>
+                        </Col>
+                        <Col md>
+                            <Form.Label>Ingredient to Exclude</Form.Label>
+                            <Form.Control value={inputExclude} onChange={handleRequest3} type="text" placeholder="Exclude" />
+                        </Col>
+                        <Col md>
+                            <Form.Label>Max Time for Recipe</Form.Label>
+                            <Form.Control value={inputTime} onChange={handleRequest4} type="number" placeholder="minutes" />
+                        </Col>
                     </Row>
                     <Row className="mb-3">
                         <Col md>
@@ -135,7 +125,7 @@ function RecipeSearch(props) {
                             </Form.Select>
                         </Col>
                         <Col md>
-                            <Form.Select as={Col} defaultValue="" onChange={handleRequest2} aria-label="default select example">
+                            <Form.Select as={Col} defaultValue="" onChange={(event) => setInputHealth("health=" + event.target.value)} aria-label="default select example">
                                 <option value="">Advanced Diet Options</option>
                                 <option value="crustacean-free">Crustacean-Free</option>
                                 <option value="dairy-free">Dairy-Free</option>
@@ -170,7 +160,7 @@ function RecipeSearch(props) {
                             </Form.Select>
                         </Col>
                         <Col md>
-                            <Form.Select as={Col} defaultValue="" onChange={handleRequest5} aria-label="default select example">
+                            <Form.Select as={Col} defaultValue="" onChange={(event) => setInputCuisine("cuisineType=" + event.target.value)} aria-label="default select example">
                                 <option value="">Cuisine Type</option>
                                 <option value="American">American</option>
                                 <option value="Asian">Asian</option>
@@ -192,11 +182,8 @@ function RecipeSearch(props) {
                                 <option value="South East Asian">South East Asian</option>
                             </Form.Select>
                         </Col>
-                    {/* </Row>
-                    <Row className="mb-3"> */}
                         <Col md>
-                            {/* <Form.Label>Meal Type</Form.Label> */}
-                            <Form.Select as={Col} defaultValue="" onChange={handleRequest7} aria-label="default select example">
+                            <Form.Select as={Col} defaultValue="" onChange={(event) => setInputMealType("mealType=" + event.target.value)} aria-label="default select example">
                                 <option value="">Meal Type</option>
                                 <option value="Breakfast">Breakfast</option>
                                 <option value="Lunch">Lunch</option>
@@ -204,34 +191,47 @@ function RecipeSearch(props) {
                                 <option value="Snack">Snack</option>
                             </Form.Select>
                         </Col>
+                        <Col md>
+                            <Form.Select as={Col} defaultValue="" onChange={(event) => setInputDishType("dishType=" + event.target.value)} aria-label="default select example">
+                                <option value="">Dish Type</option>
+                                <option value="Biscuits and cookies">Bisbuits & Cookies</option>
+                                <option value="Bread">Bread</option>
+                                <option value="Cereals">Cereal</option>
+                                <option value="Condiments and sauces">Condiments & Sauces</option>
+                                <option value="Desserts">Dessert</option>
+                                <option value="Drinks">Drinks</option>
+                                <option value="Main course">Main Course</option>
+                                <option value="Pancake">Pancakes</option>
+                                <option value="Salad">Salad</option>
+                                <option value="Sandwiches">Sandwich</option>
+                                <option value="Side dish">Side Dish</option>
+                                <option value="Soup">Soup</option>
+                                <option value="Starter">Appetizer</option>
+                                <option value="Sweets">Sweets</option>
+                            </Form.Select>
+                        </Col>
                     </Row>
-                    <Row className="mb-3">
-                        <Col md>
-                            <Form.Label>Ingredient to Exclude</Form.Label>
-                            <Form.Control value={inputExclude} onChange={handleRequest3} type="text" placeholder="Exclude" />
-                        </Col>
-                        <Col md>
-                            <Form.Label>Max Time for Recipe</Form.Label>
-                            <Form.Control value={inputTime} onChange={handleRequest4} type="number" placeholder="minutes" />
-                        </Col>
-                        </Row>
-                    <Button variant="primary" type="submit">Search</Button>
+                    <div>
+                    <Button className="mx-5" variant="primary" type="submit">Search</Button>
+                    <Button className="mx-5" variant="danger" type="reset">Reset</Button>
+                    </div>
                 </Form>
             </Container>
             <div className="recipe-container">
                 <Row>
                     {recipeData && recipeData.map((recipe, index) => {
                         return (
-                            <Col key = {index} xs={12} sm={6} md={6} lg={4} xl={3}                        
-                            className = "mb-6">
-                            <DisplayCard index = {index} recipe = {recipe.recipe} />
+                            <Col key={index} xs={12} sm={6} md={6} lg={4} xl={3}
+                                className="mb-6">
+                                <DisplayCard index={index} recipe={recipe.recipe} />
                             </Col>
-                            )
+                        )
                     })}
                 </Row>
             </div>
-            <div>  
-                <Button className="btn btn-dark" onClick={() => nextPage()}>Next Page</Button>
+            <div>
+                <Button className="btn btn-dark mx-5" onClick={() => previousPage()}>Last Page</Button>
+                <Button className="btn btn-dark mx-5" onClick={() => nextPage()}>Next Page</Button>
             </div>
         </div>
     );

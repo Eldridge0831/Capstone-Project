@@ -1,8 +1,8 @@
 import React from "react";
 import { Card, Container, Row, Col, Button } from "react-bootstrap";
 import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import { setItemCard } from "../redux/actions/ItemCard-action";
+import { useHistory } from "react-router-dom";
+import { setItemCard } from "../Redux/actions/ItemCard-action";
 import NoPicture from "../assets/no-picture-available-icon.jpg";
 import { setNutritionCard } from "../Redux/actions/NutritionCard-action";
 // import { BsInfoSquare } from "react-icons/bs"; // Information Icon
@@ -11,7 +11,7 @@ import { setNutritionCard } from "../Redux/actions/NutritionCard-action";
 
 const NutritionCard = (props) => {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
+  const history = useHistory();
   const optionItem = props.item;
   let picSrc = "";
 //   console.log(optionItem);
@@ -26,7 +26,7 @@ const NutritionCard = (props) => {
 
   const itemCard = (optionItem) => {
     dispatch(setItemCard(optionItem));
-    navigate('/solo')
+    history.push('/solo')
   };
 
   return (
