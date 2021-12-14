@@ -8,6 +8,15 @@ const https = require('https');
 const passport = require("passport");
 const GoogleStrategy = require("passport-google-oauth20").Strategy;
 
+// database requirements
+const {sequelize, Model, dataTypes} = require('sequelize');
+const users = require("./backend/models").users;
+const favorites = require("./capstone-project/backend/models").favorites;
+
+const pgp = require("pg-promise")();
+const db = pgp("postgres://@127.0.0.1:5432/capstone_development");
+
+
 // object reset everytime login with provider. User object gets overridden
 let user = {};
 
@@ -138,4 +147,12 @@ app.delete("/users/delete/:user_name", async (req, res) => {
         user = {}; 
         res.redirect("/");  //redirect to home page
     });
+
+    // favorites
+app.get("/components/favorite", (req, res) => {
+  console.log(favoriterecipes);
+})
+
     app.listen(PORT);
+
+    
