@@ -153,7 +153,7 @@ app.delete("/users/delete/:user_name", async (req, res) => {
 app.get("/components/favorite", async (req, res) => {
   const favorite = await favorites.findall();
   console.log('favorties in DB: ', favorite);
-  res.status(200).send(JSON.stringify(user));
+  res.status(200).send(JSON.stringify(favorite));
 })
 
     app.listen(PORT);
