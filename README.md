@@ -28,10 +28,6 @@
 
 ## Links
 
-- [Main Page](http://localhost:3000 /) - http://localhost:3000 /
-- [Login](http://localhost:3000 /login) - http://localhost:3000 /login
-- [Registration](http://localhost:3000 /registration) - http://localhost:3000 /registration
-- [Home](http://localhost:3000 /home) - http://localhost:3000 /home
 
 ## Contributors
 
