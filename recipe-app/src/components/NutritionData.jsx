@@ -1,9 +1,16 @@
 import React, { useState } from 'react';
-// import axios from 'axios';
+import axios from 'axios';
 import { Button, Row, Col } from 'react-bootstrap';
 import NutritionCard from './NutritionCard';
+<<<<<<< HEAD
+import { useNavigate } from "react-router-dom";
+// import { setItemCard } from "../redux/actions/ItemCard-action";
+import { setItemCard } from "../Redux/actions/ItemCard-action";
+
+=======
 import { useHistory } from "react-router-dom";
 // import { setItemCard } from "../Redux/actions/ItemCard-action";
+>>>>>>> main
 
 function NutritionData(props) {
     const [searchValue, setSearchValue] = useState("");
