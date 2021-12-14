@@ -2,16 +2,14 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { Button, Row, Col } from 'react-bootstrap';
 import NutritionCard from './NutritionCard';
-import { useNavigate } from "react-router-dom";
-// import { setItemCard } from "../redux/actions/ItemCard-action";
+import { useHistory } from "react-router-dom";
 // import { setItemCard } from "../Redux/actions/ItemCard-action";
-
 
 function NutritionData(props) {
     const [searchValue, setSearchValue] = useState("");
     // const [nutritionData, setNutritionData] = useState([])
     const [alternateOptions, setAlternateOptions] = useState([]);
-    const navigate = useNavigate ();
+    const history = useHistory ();
 
 
     // API call
@@ -28,7 +26,7 @@ function NutritionData(props) {
                     // console.log(responseData)
                     setAlternateOptions(responseData.hints)
                 } if ( responseData.hints.length === 0) {
-                    navigate('/404')      
+                    history.push('/404')      
                 }
             }
         }
@@ -45,7 +43,7 @@ function NutritionData(props) {
     return (
         <div>
             <div>
-                <h1>Help</h1>
+                <h1>Food Nutrition & Alternatives</h1>
                 <input value={searchValue} onChange={(event) => searchRequest(event)} type="text" placeholder="Your Item" required />
                 <Button type="submit" onClick={(event) => fetchNutrition(event)}>Search</Button>
             </div>

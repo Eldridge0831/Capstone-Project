@@ -21,6 +21,7 @@
 
 }
 .Navbar{
+  display: flex;
   background-image: linear-gradient(to right, 
       #e4afcb 0%, #b8cbb8 0%, #b8cbb8 0%, 
       #e2c58b 30%, #c2ce9c 64%, #7edbdc 100%);
@@ -53,3 +54,18 @@
   font-size: calc(10px + 2vmin);
   color: white;
 }
+
+.sideNav {
+  height: 100vh;
+  width: 12%;
+  display: flex;
+  flex-direction: column;
+  background-color: blanchedalmond;
+  padding-top: 20px;
+  top: 10%;
+  left: 0;
+  position: fixed;
+  
+}
+
+

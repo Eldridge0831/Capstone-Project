@@ -1,20 +1,25 @@
 import React from "react";
 import { Card, Container, Row, Col, Button } from "react-bootstrap";
 import { useDispatch } from "react-redux";
+<<<<<<< HEAD
 import { useNavigate } from "react-router-dom";
 import { setRecipeCard } from "../redux/actions/RecipeCard-action";
+=======
+import { useHistory } from "react-router-dom";
+import { setRecipeCard } from "../Redux/actions/RecipeCard-action";
+>>>>>>> main
 // import { BsInfoSquare } from "react-icons/bs"; // Information Icon
 
 
 
 const DisplayCard = (props) => {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
+  const history = useHistory();
   const individualRecipe = props.recipe;
 
   const recipeCard = (individualRecipe) => {
     dispatch(setRecipeCard(individualRecipe));
-    navigate('/recipe')
+    history.push('/recipe')
   };
 
   return (
