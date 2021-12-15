@@ -15,7 +15,7 @@ import {
 import * as FaIcons from 'react-icons/fa';
 import * as AiIcons from 'react-icons/ai';
 
-function Sidebar  () {
+function Sidebar () {
     const [isOpen, setIsOpen] = useState()
     
     return (
