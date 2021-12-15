@@ -31,7 +31,7 @@
 
 ## Contributors
 
-- Vivek  (Databases, Navbar)
+- Vivek  (Databases, Navbar, AboutUs)
 - Tim  (Login, Registration, Jira/Repo Setup)
 - Charles Eldridge - (React/Redux, API call GURU, ReadME, Scrum Master)
 
