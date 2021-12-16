@@ -13,10 +13,11 @@ import "../node_modules/bootstrap/dist/js/bootstrap.min.js";
 const store = createStore (rootReducer);
 
 render (
+
   <Provider store={store}>
-    
+    <Auth0ProviderWithHistory>
     <App />
-    
+    </Auth0ProviderWithHistory>
   </Provider>,
   document.getElementById('root')
 )
