@@ -2,8 +2,8 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 import "bootstrap/dist/css/bootstrap.min.css";
 import logo from "../assets/logo.jpg";
-
-import AuthButton from './AuthButton';
+import AuthNav from './auth-nav';
+import AuthenticationButton from './authentication-button';
 
 
 function Navbar() {
@@ -15,7 +15,8 @@ function Navbar() {
             <Link to="/aboutus" style={{ textDecoration: "none" }} className="nav-link">About Us</Link>
             
             
-              <AuthButton />
+              
+              <AuthNav/>
               {/* <Link to="/login" style={{ textDecoration: "none" }} className="nav-link">
                 Login
               </Link> */}
